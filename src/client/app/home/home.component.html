@@ -1,26 +1,80 @@
 <div class="container">
   <h2>Paper Types</h2>
   <div class="row">
-    <div class="col-md-4">
-      <div class="panel panel-primary">
+    <!--Try Model Paper Panel-->
+    <div class="col-md-6">
+      <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Try Model Paper</h3>
         </div>
         <div class="panel-body">
-          Panel content
+          <button type="button" class="btn btn-raised btn-info " data-toggle="modal" data-target="#model-paper-info">Learn more</button>
+          <a href="javascript:void(0)" class="btn btn-raised btn-default">Try Model Papers</a>
+          <h3>Summary</h3>
+          <hr/>
+          <h5>Total Papers tried: </h5>
         </div>
       </div>
+      <div class="container"></div>
     </div>
 
-    <div class="col-md-4">
-      <div class="panel panel-info">
+    <!-- Time Mode Panel -->
+    <div class="col-md-6">
+      <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Time Mode</h3>
         </div>
         <div class="panel-body">
-          Panel content
+          <button type="button" class="btn btn-raised btn-info " data-toggle="modal" data-target="#time-based-info">Learn More</button>
+          <a href="javascript:void(0)" class="btn btn-raised btn-default">Try Timed Questions</a>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="model-paper-info" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content: Model Papers-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Model Papers</h4>
+      </div>
+      <div class="modal-body">
+        <p>Model papers is useful when you want to try out whole paper. You can simply select you prefered district, 
+          year and subject you like to try out. You will be given whole paper with pre-allocated time as examiner allocate
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="time-based-info" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Time Based Questions</h4>
+      </div>
+      <div class="modal-body">
+        <p>Time Based Question can be used when you limited time and want to try out some questions. 
+          Simply select the subject and enter time you want and system will automatically select questions
+          according to your preferences
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+      </div>
+    </div>
+
   </div>
 </div>

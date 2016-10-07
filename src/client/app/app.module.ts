@@ -13,8 +13,16 @@ import { HistoryModule } from './history/history.module';
 import { LoginModule } from './login/login.module';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, RouterModule.forRoot(routes), 
-    AboutModule, HomeModule, HistoryModule, LoginModule, SharedModule.forRoot()],
+  imports: [
+    BrowserModule, 
+    HttpModule, 
+    RouterModule.forRoot(routes), 
+    AboutModule, 
+    HomeModule, 
+    HistoryModule, 
+    LoginModule, 
+    SharedModule.forRoot()
+    ],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,
