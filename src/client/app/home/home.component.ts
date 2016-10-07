@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
-
+import { ModelPaperComponent } from './modelPaper/model-paper.component'
+import { TimeModeComponent } from './timeMode/time-mode.component';
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -8,29 +9,12 @@ import { Component, AfterViewInit } from '@angular/core';
     selector: 'sd-home',
     templateUrl: 'home.component.html',
 })
-export class HomeComponent implements AfterViewInit {
-
-    phyPapers = 25;
-    chemPapers = 15;
-    bioPapers = 12;
-
-    phyQuestions = 300;
-    chemQuestions = 200;
-    bioQuestion = 120;
+export class HomeComponent implements AfterViewInit {    
     /**
      * initialize the material after view is rendered
      */
     ngAfterViewInit() {
         $.material.init();
-    }
-
-    /**
-     * This method will get total Papers student has tried for given subject
-     */
-    getTotalNumberOfPapers(subjectID: number): number {
-        let totalPapers: number;
-        totalPapers = 10; // get from the service when it is ready
-        return totalPapers;
     }
 
     /**

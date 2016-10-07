@@ -1,0 +1,59 @@
+<!-- Model Paper panel -->
+<div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Try Model Paper</h3>
+        </div>
+        <div class="panel-body">
+            <button type="button" class="btn btn-raised btn-info " data-toggle="modal" data-target="#model-paper-info">Learn more</button>
+            <a [routerLink]="['/paper']" class="btn btn-raised btn-default">Try Model Papers</a>
+            <h3>Summary</h3>
+            <hr/>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Total Questions tried</h5>
+                </div>
+
+                <div class="col-md-6">
+                    <h5>{{ totalQ }}</h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Total Papers tried</h5>
+                </div>
+
+                <div class="col-md-6">
+                    <h5>{{ totalP }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Model Paper Modal -->
+<div id="model-paper-info" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content: Model Papers-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Model Papers</h4>
+            </div>
+            <div class="modal-body">
+                <p>Model papers is useful when you want to try out whole paper. You can simply select you prefered district,
+                    year and subject you like to try out. You will be given whole paper with pre-allocated time as examiner
+                    allocate
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+
+    </div>
+</div>
