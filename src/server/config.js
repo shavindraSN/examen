@@ -1,4 +1,5 @@
-export const dbConfigs: any = {
+"use strict";
+exports.dbConfigs = {
     host: 'localhost',
     user: 'root',
     password: '',

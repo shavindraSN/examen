@@ -15,5 +15,12 @@ interface Response {
  * All the database interactions should handled through this class
  */
 export class DBManager {
-
+ executeQuery(query:string):void{
+        connection.connect();
+        connection.query(query, function (err, rows, fields) {
+            if (err) throw err;
+            console.log(rows);
+        });
+        connection.end();
+ }
 }
