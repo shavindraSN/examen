@@ -1,5 +1,5 @@
 /// <reference path="../node_modules/@types/core-js/index.d.ts" />
-///<reference path="../typings/jquery/jquery.d.ts"/>
+///<reference path="../typings/globals/jquery/index.d.ts"/>
 
 import { enableProdMode } from "@angular/core";
 
