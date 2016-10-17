@@ -8,3 +8,8 @@ body {
 .sebm-google-map-container {
 	height: 300px;
 }
+.loader {
+	position: absolute;
+	left: 48%;
+	top: 48%;
+}

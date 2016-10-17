@@ -13,6 +13,7 @@ import { HomeModule } from "./components/home/home.module";
 
 import { LoginComponent } from './components/login/login.component';
 
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -30,8 +31,8 @@ import { LoginComponent } from './components/login/login.component';
         })
     ],
     declarations: [
+        AppComponent,
         LoginComponent,
-        AppComponent
     ],
     bootstrap: [AppComponent],
     schemas: [
