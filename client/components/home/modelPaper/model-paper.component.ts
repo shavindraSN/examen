@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     selector: 'model-paper-panel',
     templateUrl: 'client/components/home/modelPaper/model-paper.component.html'
 })
-export class ModelPaperComponent{
+export class ModelPaperComponent {
 
     phyPapers = 25;
     chemPapers = 15;
