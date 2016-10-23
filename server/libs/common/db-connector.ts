@@ -11,7 +11,7 @@ export class DbConnector {
      * Callback function for providing the connection object
      * 
      * @callback provideConnection
-     * @param {object} err - Error object if there is a error occured while connecting
+     * @param {object} err - Error object if there is an error occurred while connecting
      *                       connecting to the database.
      * @param {IConnection} connection - Connection object that can be used to connect and 
      *                                   query that database
@@ -22,7 +22,7 @@ export class DbConnector {
      * connect and query the database.
      * 
      * @param {provideConnection} callback - Pass connection to other functions
-     */
+     */ 
     connectToDb(callback): any {
         let connection = mysql.createConnection(dbConfig);
 
