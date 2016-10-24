@@ -2,6 +2,14 @@ export const secret: string = "RbBQqA6uF#msRF8s7h*?@=95HUm&DgMDd6zLFn4XzWQ6dtwXS
 export const length: number = 128;
 export const digest: string = "sha256";
 /**
+ * General instructions to use configuration file
+ * 
+ * This file is not intended to be commited to upstream. Use following link to learn more.
+ * https://github.com/shavindraSN/examen/wiki/Managing-versions-on-Configuration-file
+ * 
+ */
+
+/**
  * Add relevant details for MySQL Login
  * 
  * host: database host location
@@ -11,8 +19,8 @@ export const digest: string = "sha256";
  * 
  */
 export const dbConfig = {
-    host: 'localhost',
-    user: 'root',
-    password: 'sha123',
-    database: 'examen'
+    host: '',
+    user: '',
+    password: '',
+    database: ''
 }
