@@ -6,6 +6,7 @@ import { json, urlencoded } from "body-parser";
 import { loginRouter } from "./routes/login";
 import { protectedRouter } from "./routes/protected";
 import { users } from './api/users/users';
+import { questions } from './api/questions/questions';
 
 const app: express.Application = express();
 app.disable("x-powered-by");
@@ -20,6 +21,7 @@ app.use(urlencoded({ extended: true }));
 app.use("/api", protectedRouter);
 app.use("/login", loginRouter);
 app.use('/users', users);
+app.use('/questions', questions);
 
 app.use('/client', express.static(join(__dirname, '../client')));
 
