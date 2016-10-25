@@ -50,13 +50,13 @@ CREATE TABLE papers(
 CREATE TABLE questions
 (
 	id int AUTO_INCREMENT,
-	correctAnsNo int,
-	questionTime int,
+	correct_ans_no int,
+	question_time int,
 	paper_id int,
 	user_id int,
 	subject_id int,
 	isImage boolean,
-	imageURL varchar(255)
+	image_url varchar(255)
 	question varchar(1000),
 	CONSTRAINT pk_questions PRIMARY KEY(id),
 	CONSTRAINT fk_questions_subjects FOREIGN KEY(subject_id) REFERENCES subjects(id),
