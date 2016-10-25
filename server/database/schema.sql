@@ -53,7 +53,7 @@ CREATE TABLE questions
 	correctAnsNo int,
 	questionTime int,
 	paper_id int,
-	user_id,
+	user_id int,
 	subject_id int,
 	isImage boolean,
 	imageURL varchar(255)
@@ -70,7 +70,7 @@ CREATE TABLE answers
 	isImage boolean,
 	answerNo int,
 	answers varchar(1000),
-	imageURL varchar(max),
+	imageURL varchar(255),
 	CONSTRAINT pk_answers PRIMARY KEY(id),
 	CONSTRAINT fk_answers_questions FOREIGN KEY(question_id) REFERENCES questions(id)
 );
