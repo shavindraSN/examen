@@ -9,7 +9,6 @@ const users: Router = Router();
 users.get("/getAllUsers", (request: Request, response: Response) => {
     let dbConnector = new DbConnector();
     let userFunctions = new UserFunctions()
-    let connector: mysql.IConnection;
 
     dbConnector.connectToDb((error, connection) => {
         if (error) {
@@ -20,7 +19,7 @@ users.get("/getAllUsers", (request: Request, response: Response) => {
         else {
             userFunctions.getAllUsers(connection, (data) => {
                 response.json({
-                    users:data 
+                    users: data
                 });
             })
         }
@@ -30,14 +29,54 @@ users.get("/getAllUsers", (request: Request, response: Response) => {
 /**
  * Retrieve users with specified user ID
  */
-users.get("/user:id", (request: Request, response: Response) => {
-    response.json({
-        users: [
-            { name: 'test1' },
-            { name: 'test2' }
-        ]
-    })
+users.get("/getUser/:id", (request: Request, response: Response) => {
+    let dbConnector = new DbConnector();
+    let userFunctions = new UserFunctions()
+    let connector: mysql.IConnection;
 
+    dbConnector.connectToDb((error, connection) => {
+        if(error) {
+            return response.json({
+                err: error
+            });
+        }
+        else {
+            userFunctions.getUser(request.params.id, connection, (data) => {
+                response.json({
+                    user: data
+                })
+            });
+        }
+    }) 
 });
 
+/**
+ * Update user details with given details for given user ID
+ */
+users.put("/updateUser/:id", (request: Request, response: Response) => {
+    let dbConnector = new DbConnector();
+    let userFunctions = new UserFunctions()
+    let connector: mysql.IConnection;
+
+    let first_name = request.body.first_name;
+    let last_name = request.body.last_name;
+    let email = request.body.email;
+    let pwd = request.body.pwd;
+    let district = request.body.district;
+    
+    dbConnector.connectToDb((error, connection) => {
+        if(error) {
+            return response.json({
+                err: error
+            });
+        }
+        else {
+            userFunctions.getUser(request.params.id, connection, (data) => {
+                response.json({
+                    user: data
+                })
+            });
+        }
+    }) 
+});
 export { users }
