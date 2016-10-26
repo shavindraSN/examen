@@ -7,9 +7,16 @@
         <!-- Bootstrap CSS-->
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
+        <!-- Font-Awesome -->
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
         <!-- Material CSS-->
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-material-design.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/ripples.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/jquery.dropdown.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
         <!-- 1. Load libraries -->
         <!-- Polyfill(s) for older browsers -->
@@ -19,10 +26,13 @@
         <script src="assets/js/vendor/system.js"></script>
         <script src="assets/js/vendor/jquery.min.js"></script>
 
+
         <!-- javascript libraries for Material Design -->
         <script src="assets/js/material.min.js"></script>
         <script src="assets/js/ripples.min.js"></script>
         <script src="assets/js/bootstrap.js"></script>
+
+        <script src="assets/js/jquery.dropdown.js"></script>
 
         <!-- 2. Configure SystemJS -->
         <!-- Development mod -->
@@ -34,8 +44,8 @@
 
     <body>
         <app>
-            <div class="ui active inverted dimmer">
-                <div class="ui small loader"></div>
+            <div class="loader" style="text-align: center">
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
             </div>
         </app>
         <!--  Production mod  -->

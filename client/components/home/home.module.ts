@@ -5,6 +5,9 @@ import { HomeComponent } from './home.component';
 import { NavBarModule } from '../shared/navbar/navbar.module';
 import { ModelPaperModule } from './modelPaper/model-paper.module';
 import { TimeModeModule } from './timeMode/time-mode.module';
+import { InitModelPaperComponent } from '../initModelPaper/init-model-paper.component';
+import { InitQuizPaperComponent } from '../initQuizPaper/init-quiz-paper.component';
+import { PaperSummaryComponent } from '../paperSummary/paper-summary.component'
 
 @NgModule({
     imports: [
@@ -14,7 +17,10 @@ import { TimeModeModule } from './timeMode/time-mode.module';
         TimeModeModule
     ],
     declarations: [
-        HomeComponent
+        HomeComponent,
+        InitModelPaperComponent,
+        InitQuizPaperComponent,
+        PaperSummaryComponent
     ],
     bootstrap: [
         HomeComponent

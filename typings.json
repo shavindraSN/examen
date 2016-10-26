@@ -1,0 +1,11 @@
+{
+  "name": "examen",
+  "dependencies": {},
+  "globalDependencies": {
+    "express": "registry:dt/express#4.0.0+20160708185218",
+    "jquery": "registry:dt/jquery#1.10.0+20160929162922",
+    "mysql": "registry:dt/mysql#0.0.0+20160316155526",
+    "node": "registry:dt/node#6.0.0+20161019125345",
+    "shuffle-array": "registry:dt/shuffle-array#0.0.0+20151206140107"
+  }
+}

@@ -20,6 +20,7 @@ Online Quiz System for G.C.E. Advanced Level, Sri Lanka. Examen allows authorize
 - [Development Mode](#development-mode)
 - [Production Mode](#production-mode)
 - [Technologies](#technologies)
+- [Examen Developer](#examen-developer)
 - [Contributor](#contributors)
 - [License](#license)
 
@@ -61,6 +62,14 @@ Comment out
 - Backend framework - **ExpressJS with Node**
 - Language - **Typescript**
 - Database - **MariaDB**
+
+## Examen Developer
+To build new functionalities or entirely new project on top of 
+the functions already have with Examen, Examen API can be used. 
+Examen API provide all the functionalities as a RESTful API. 
+For more information, follow the link given bellow. 
+
+vist: [https://shavindrasn.github.io](https://shavindrasn.github.io) 
 
 ## Contributors		
 
