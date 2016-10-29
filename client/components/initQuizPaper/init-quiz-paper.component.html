@@ -7,27 +7,19 @@
 
 				<div class="form-group">
 					<label for="selectYear" class="col-md-2 control-label">Subject</label>
-
 					<div class="col-md-10">
 						<select id="selectYear" class="form-control">
-                            <option>Physics</option>
-                            <option>Chemistry</option>
-                            <option>Biology</option>
-                            <option>Combined Maths</option>
+                            <option [value]= *ngFor="let subject of subjects" (change)='onSelectSubject(subject)'>{{ subject.subject_name }}</option>
                         </select>
 					</div>
-
 				</div>
 
-					<div class="form-group">
-						<label for="inputEmail" class="col-md-2 control-label">TIme Allocation (min)</label>
-
-						<div class="col-md-10">
-							<input type="number" min="5" max="180" class="form-control" id="inputEmail" placeholder="Time">
-						</div>
+				<div class="form-group">
+					<label for="inputEmail" class="col-md-2 control-label">Time Allocation (min)</label>
+					<div class="col-md-10">
+						<input type="number" min="5" max="180" class="form-control" id="inputEmail" placeholder="Time">
 					</div>
-
-
+				</div>
 
 				<div class="form-group">
 					<div class="col-md-10 col-md-offset-8">
@@ -37,9 +29,5 @@
 				</div>
 			</fieldset>
 		</form>
-
-		<h5>
-			{{st}}
-		</h5>
 	</div>
 </div>
