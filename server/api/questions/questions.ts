@@ -52,10 +52,10 @@ questions.get("/getQuestionIdTime/:subject_id/:time", (request: Request, respons
                 }
 
                 let question = { data: tempQuestionArray }
-                let quizFunctions = new QuizFunctions(question);
+                let quizFunctions = new QuizFunctions(request.params.time, question);
 
                 quizFunctions.makeQuestionRandomArray();
-                let result = quizFunctions.makeTime();
+                let result = quizFunctions.makeQuestionRandomArray()
 
                 userFunctions.getQuestionsById(result, connection, (data) => {
                     response.json({questions: data});
