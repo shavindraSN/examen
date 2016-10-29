@@ -28,7 +28,7 @@ CREATE TABLE users
 CREATE TABLE subjects
 (
 	id int AUTO_INCREMENT,
-	subjectName varchar(30),	
+	subject_name varchar(30),	
 	CONSTRAINT pk_subjects PRIMARY KEY(id)
 );
 
