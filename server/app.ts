@@ -7,6 +7,7 @@ import { loginRouter } from "./routes/login";
 import { protectedRouter } from "./routes/protected";
 import { users } from './api/users/users';
 import { questions } from './api/questions/questions';
+import { subjects } from './api/subjects/subjects';
 
 const app: express.Application = express();
 app.disable("x-powered-by");
@@ -22,6 +23,7 @@ app.use("/api", protectedRouter);
 app.use("/login", loginRouter);
 app.use('/users', users);
 app.use('/questions', questions);
+app.use('/subjects', subjects);
 
 app.use('/client', express.static(join(__dirname, '../client')));
 
