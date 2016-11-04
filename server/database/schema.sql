@@ -55,7 +55,7 @@ CREATE TABLE questions
 	paper_id int,
 	user_id int,
 	subject_id int,
-	isImage boolean,
+	is_image boolean,
 	image_url varchar(255)
 	question varchar(1000),
 	CONSTRAINT pk_questions PRIMARY KEY(id),
@@ -67,10 +67,10 @@ CREATE TABLE answers
 (
 	id int AUTO_INCREMENT,
 	question_id int,
-	isImage boolean,
-	answerNo int,
+	is_image boolean,
+	answer_no int,
 	answers varchar(1000),
-	imageURL varchar(255),
+	image_url varchar(255),
 	CONSTRAINT pk_answers PRIMARY KEY(id),
 	CONSTRAINT fk_answers_questions FOREIGN KEY(question_id) REFERENCES questions(id)
 );
