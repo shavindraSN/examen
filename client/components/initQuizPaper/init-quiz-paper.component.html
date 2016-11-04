@@ -1,23 +1,24 @@
 <navbar></navbar>
 <div class="container col-md-8 col-md-offset-2">
 	<div class="well">
-		<form class="form-horizontal">
+		<form #initpaper="ngForm" (ngSubmit)=onSubmit(initpaper.form) class="form-horizontal">
 			<fieldset>
 				<legend>Initialize Quiz</legend>
 
 				<div class="form-group">
-					<label for="selectYear" class="col-md-2 control-label">Subject</label>
+					<label for="selectSubject" class="col-md-2 control-label">Subject</label>
 					<div class="col-md-10">
-						<select id="selectYear" class="form-control">
-                            <option [value]= *ngFor="let subject of subjects" (change)='onSelectSubject(subject)'>{{ subject.subject_name }}</option>
+						<select class="form-control" id="selectSubject" required
+						[(ngModel)]="subjectID" name="selectSubject" #selectSubject="ngModel">
+                            <option *ngFor="let subject of subjects" [value]="subject.id">{{ subject.subject_name }}</option>
                         </select>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="inputEmail" class="col-md-2 control-label">Time Allocation (min)</label>
+					<label  for="inputTime" class="col-md-2 control-label">Time Allocation (min)</label>
 					<div class="col-md-10">
-						<input type="number" min="5" max="180" class="form-control" id="inputEmail" placeholder="Time">
+						<input type="number" name="inputTime" [(ngModel)]="initpaper.form.value.inputTime" required min="5" max="180" class="form-control" id="inputTime" placeholder="Time">
 					</div>
 				</div>
 
@@ -26,6 +27,7 @@
 						<button type="button" class="btn btn-default">Back</button>
 						<button type="submit" class="btn btn-raised btn-primary">Start</button>
 					</div>
+					
 				</div>
 			</fieldset>
 		</form>
