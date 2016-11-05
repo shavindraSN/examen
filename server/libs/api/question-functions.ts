@@ -1,6 +1,6 @@
 ///<reference path="../../../typings/globals/mysql/index.d.ts"/>
 import * as mysql from 'mysql';
-
+import * as Excel from "xls-to-json";
 import { Question } from '../../../client/sharedClasses/question';
 import { Answer } from '../../../client/sharedClasses/answer';
 
@@ -100,7 +100,7 @@ export class QuestionFunctions {
                 tempObject.image_url = rowObject.image_url;
                 tempObject.question = rowObject.question;
 
-                tempObject.answers=[];
+                tempObject.answers = [];
                 tempObject.answers.push({
                     answer_no: rowObject.answer_no,
                     answer_id: rowObject.answer_id,
@@ -127,5 +127,29 @@ export class QuestionFunctions {
         }
 
         return questionArray;
+    }
+
+/**
+     * Upload Questions from Excel Sheet to Server
+     * Excel file extention could be .xls and .xlsx only
+     * 
+     * @param {variable} fileName - name and path of the input excel file
+     * 
+     * @param {variable} sheetName - name of the sheet which questions are on
+     */
+    uploadQuestionsExcel(fileName, sheetName) {
+     Excel({
+                input: fileName,  
+                output: null, 
+                sheet: sheetName  
+        }, function (err, result) {
+                 if (err) {
+                     console.error(err);
+                } else {
+                console.log(result);
+                 return result;
+            }
+        });
+
     }
 }
