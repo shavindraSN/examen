@@ -79,4 +79,30 @@ users.put("/updateUser/:id", (request: Request, response: Response) => {
         }
     }) 
 });
+
+/**
+ * Insert new user  with given details 
+ */
+
+users.get("/uploaduser/:fname/:lname/:email/:email_ver/:pwd/:district/:nic/:pno/:pno_ver/:ty_id", (request: Request, response: Response) => {
+    let dbConnector = new DbConnector();
+    let userFunctions = new UserFunctions()
+    let connector: mysql.IConnection;
+
+    dbConnector.connectToDb((error, connection) => {
+        if(error) {
+            return response.json({
+                err: error
+            });
+        }
+        else {
+           
+
+                userFunctions.uploaduser(request.params.fname,request.params.lname,request.params.email,request.params.email_ver,request.params.pwd,request.params.district,request.params.nic,request.params.pno,request.params.pno_ver,request.params.ty_id,connection, (data) => {
+                    response.json("true");
+                });
+            
+        }
+    }) 
+});
 export { users }

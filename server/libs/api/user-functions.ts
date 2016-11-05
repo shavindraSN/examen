@@ -69,4 +69,32 @@ export class UserFunctions {
             callback(row);
         })
     }
+
+     /**
+     * Method uploaduser details from the database. 
+     * 
+     * @param {mysql.IConnection} connection - Connection object that has connection metadata
+     * @param {sendResponse} callback - Response rows as JSON to the request
+     * 
+     */ 
+
+    uploaduser(a,b,c,d,e,f,g,h,i,j,connection: mysql.IConnection, callback){
+        let aa = a.toString();
+		let bb = b.toString();
+		let cc = c.toString();
+		let dd = d.toString();
+		let ee = e.toString();
+		let ff = f.toString();
+		let gg = g.toString();
+		let hh = h.toString();
+		let ii = i.toString();
+		let jj = j.toString();
+		
+		//let yy = y.toString();
+      
+        let query = 'INSERT INTO users VALUES(' +aa+ ','+bb+','+cc+','+dd+','+ee+','+ff+','+gg+','+hh+','+ii+','+jj+')';
+        connection.query(query, (err, res) => {
+            callback(res);
+        });
+    }
 }
