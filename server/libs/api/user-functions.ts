@@ -78,21 +78,20 @@ export class UserFunctions {
      * 
      */ 
 
-    uploadUser(a,b,c,d,e,f,g,h,i,j,connection: mysql.IConnection, callback){
-        let aa = a.toString();
-		let bb = b.toString();
-		let cc = c.toString();
-		let dd = d.toString();
-		let ee = e.toString();
-		let ff = f.toString();
-		let gg = g.toString();
-		let hh = h.toString();
-		let ii = i.toString();
-		let jj = j.toString();
+    uploadUser(fname,lname,email,email_ver,pwd,district,nic,pno,pno_ver,ty_id,connection: mysql.IConnection, callback){
+        let u_fname = fname.toString();
+		let u_lname = lname.toString();
+		let u_email = email.toString();
+		let u_email_ver = email_ver.toString();
+		let u_pwd = pwd.toString();
+		let u_district = district.toString();
+		let u_nic = nic.toString();
+		let u_pno = pno.toString();
+		let u_pno_ver = pno_ver.toString();
+		let u_ty_id = ty_id.toString();
 		
-		//let yy = y.toString();
-      
-        let query = 'INSERT INTO users VALUES(' +aa+ ','+bb+','+cc+','+dd+','+ee+','+ff+','+gg+','+hh+','+ii+','+jj+')';
+	
+      let query = 'INSERT INTO users VALUES(' +u_fname+ ','+u_lname+','+u_email+','+u_email_ver+','+u_pwd+','+u_district+','+u_nic+','+u_pno+','+u_pno_ver+','+u_ty_id+')';
         connection.query(query, (err, res) => {
             callback(res);
         });
@@ -107,10 +106,10 @@ export class UserFunctions {
      * 
      */ 
 
-    deleteUser(a,connection: mysql.IConnection, callback){
-        let aa = a.toString();
+    deleteUser(uid,connection: mysql.IConnection, callback){
+        let u_uid = uid.toString();
 		
-        let query = 'DELETE FROM users WHERE id =aa';
+        let query = 'DELETE FROM users WHERE id =u_uid';
         connection.query(query, (err, res) => {
             callback(res);
         });
