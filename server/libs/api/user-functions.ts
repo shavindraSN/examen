@@ -78,7 +78,7 @@ export class UserFunctions {
      * 
      */ 
 
-    uploaduser(a,b,c,d,e,f,g,h,i,j,connection: mysql.IConnection, callback){
+    uploadUser(a,b,c,d,e,f,g,h,i,j,connection: mysql.IConnection, callback){
         let aa = a.toString();
 		let bb = b.toString();
 		let cc = c.toString();
@@ -107,7 +107,7 @@ export class UserFunctions {
      * 
      */ 
 
-    deleteuser(a,connection: mysql.IConnection, callback){
+    deleteUser(a,connection: mysql.IConnection, callback){
         let aa = a.toString();
 		
         let query = 'DELETE FROM users WHERE id =aa';

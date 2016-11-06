@@ -84,7 +84,7 @@ users.put("/updateUser/:id", (request: Request, response: Response) => {
  * Insert new user  with given details 
  */
 
-users.get("/uploaduser/:fname/:lname/:email/:email_ver/:pwd/:district/:nic/:pno/:pno_ver/:ty_id", (request: Request, response: Response) => {
+users.get("/uploadUser/:fname/:lname/:email/:email_ver/:pwd/:district/:nic/:pno/:pno_ver/:ty_id", (request: Request, response: Response) => {
     let dbConnector = new DbConnector();
     let userFunctions = new UserFunctions()
     let connector: mysql.IConnection;
@@ -98,7 +98,7 @@ users.get("/uploaduser/:fname/:lname/:email/:email_ver/:pwd/:district/:nic/:pno/
         else {
            
 
-                userFunctions.uploaduser(request.params.fname,request.params.lname,request.params.email,request.params.email_ver,request.params.pwd,request.params.district,request.params.nic,request.params.pno,request.params.pno_ver,request.params.ty_id,connection, (data) => {
+                userFunctions.uploadUser(request.params.fname,request.params.lname,request.params.email,request.params.email_ver,request.params.pwd,request.params.district,request.params.nic,request.params.pno,request.params.pno_ver,request.params.ty_id,connection, (data) => {
                     response.json("true");
                 });
             
@@ -110,7 +110,7 @@ users.get("/uploaduser/:fname/:lname/:email/:email_ver/:pwd/:district/:nic/:pno/
  * Delete new user  with given details 
  */
 
-users.get("/deleteuser/:a", (request: Request, response: Response) => {
+users.get("/deleteUser/:a", (request: Request, response: Response) => {
     let dbConnector = new DbConnector();
     let userFunctions = new UserFunctions()
     let connector: mysql.IConnection;
@@ -122,7 +122,7 @@ users.get("/deleteuser/:a", (request: Request, response: Response) => {
             });
         }
         else {
-           userFunctions.deleteuser(request.params.a,connection, (data) => {
+           userFunctions.deleteUser(request.params.a,connection, (data) => {
                     response.json("true");
                 });
             
