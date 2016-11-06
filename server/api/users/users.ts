@@ -105,4 +105,29 @@ users.get("/uploaduser/:fname/:lname/:email/:email_ver/:pwd/:district/:nic/:pno/
         }
     }) 
 });
+
+/**
+ * Delete new user  with given details 
+ */
+
+users.get("/deleteuser/:a", (request: Request, response: Response) => {
+    let dbConnector = new DbConnector();
+    let userFunctions = new UserFunctions()
+    let connector: mysql.IConnection;
+
+    dbConnector.connectToDb((error, connection) => {
+        if(error) {
+            return response.json({
+                err: error
+            });
+        }
+        else {
+           userFunctions.deleteuser(request.params.a,connection, (data) => {
+                    response.json("true");
+                });
+            
+        }
+    }) 
+});
+
 export { users }

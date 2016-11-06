@@ -97,4 +97,23 @@ export class UserFunctions {
             callback(res);
         });
     }
+
+
+     /**
+     * Method deleteuser details from the database. 
+     * 
+     * @param {mysql.IConnection} connection - Connection object that has connection metadata
+     * @param {sendResponse} callback - Response rows as JSON to the request
+     * 
+     */ 
+
+    deleteuser(a,connection: mysql.IConnection, callback){
+        let aa = a.toString();
+		
+        let query = 'DELETE FROM users WHERE id =aa';
+        connection.query(query, (err, res) => {
+            callback(res);
+        });
+    }
+
 }
