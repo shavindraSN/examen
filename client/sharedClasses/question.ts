@@ -11,4 +11,5 @@ export class Question {
     image_url: string;
     question: string;
     answers: Answer[];
+    selectedAnswerNo: number;
 }
