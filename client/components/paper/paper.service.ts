@@ -20,8 +20,12 @@ export class PaperService {
             .catch(this.handleError)
     }
 
-    calculateTotalTime(questionArray): number {
-        return
+    calculateTotalTime(questionArray: Question[]): number {
+        let totalTime = 0;
+        for(let question of questionArray) {
+            totalTime += question.question_time;
+        }
+        return totalTime;
     }
 
     private handleError(error: any): Promise<any> {
