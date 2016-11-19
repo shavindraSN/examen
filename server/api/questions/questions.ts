@@ -4,6 +4,7 @@ import * as mysql from 'mysql';
 import { DbConnector } from '../../libs/common/db-connector';
 import { QuestionFunctions } from '../../libs/api/question-functions';
 import { QuizFunctions } from '../../libs/api/quiz-functions';
+import { Question } from '../../../client/sharedClasses/question';
 
 const questions: Router = Router();
 /**
@@ -34,7 +35,7 @@ questions.get("/getAllQuestions", (request: Request, response: Response) => {
  */
 questions.get("/getQuestionIdTime/:subject_id/:time", (request: Request, response: Response) => {
     let dbConnector = new DbConnector();
-    let userFunctions = new QuestionFunctions()
+    let userFunctions = new QuestionFunctions();
     let connector: mysql.IConnection;
 
     dbConnector.connectToDb((error, connection) => {
@@ -60,6 +61,37 @@ questions.get("/getQuestionIdTime/:subject_id/:time", (request: Request, respons
             });
         }
     }) 
+});
+
+/**
+ * API Route for adding questions to database
+ */
+questions.post("/addQuestions", (request: Request, response: Response) => {
+    let dbConnector = new DbConnector();
+    let question = new Question();
+    let questionFunctions = new QuestionFunctions(); 
+    let user_name = request.body.user_name;
+    question.qno = request.body.qno;
+    question.correct_ans_no = request.body.correct_ans_no;
+    question.question_time = request.body.question_time;
+    question.paper_id = request.body.paper_id;
+    question.subject_id = request.body.subject_id;
+    question.is_image = request.body.is_image;
+    question.image_url = request.body.image_url;
+    question.question = request.body.question;
+    question.answers = request.body.answers;
+
+    dbConnector.connectToDb((error, connection) => {
+        if (error) {
+            return response.json({
+                err: error
+            });
+        }
+        else {
+            console.log('add Questions ', question);
+            response.json({message: "Inserted Successfully"});
+        }
+    });
 });
 
 export { questions }
