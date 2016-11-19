@@ -11,6 +11,7 @@ import { InitModelPaperComponent } from '../initModelPaper/init-model-paper.comp
 import { InitQuizPaperComponent } from '../initQuizPaper/init-quiz-paper.component';
 import { PaperSummaryComponent } from '../paperSummary/paper-summary.component';
 import { PaperComponent } from '../paper/paper.component';
+import { AddQuestionsComponent } from '../uploadQuestions/addQuestions/add-questions.component';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { PaperComponent } from '../paper/paper.component';
         InitModelPaperComponent,
         InitQuizPaperComponent,
         PaperSummaryComponent,
-        PaperComponent
+        PaperComponent,
+        AddQuestionsComponent
     ],
     bootstrap: [
         HomeComponent
