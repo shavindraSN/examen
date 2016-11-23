@@ -20,9 +20,7 @@ export class PaperComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     constructor(private paperservice: PaperService, private route: ActivatedRoute) { }
 
-    ngAfterViewInit() {
-        //this.paperTime = this.getPaperTime(this.questions);
-     }
+    ngAfterViewInit() { }
 
     ngAfterViewChecked(){
         $.material.init();
