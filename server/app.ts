@@ -12,15 +12,12 @@ import { users } from './api/users/users';
 import { questions } from './api/questions/questions';
 import { subjects } from './api/subjects/subjects';
 import { authRouter } from './routes/passport' ;
-// import authenticat
-// 
 
 const app: express.Application = express();
 app.disable("x-powered-by");
 
 app.use(favicon(join(__dirname, "../public", "favicon.ico")));
 app.use(express.static(join(__dirname, '../public')));
-
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
@@ -66,7 +63,5 @@ app.use(function(err: any, req: express.Request, res: express.Response, next: ex
         message: err.message
     });
 });
-
-
 
 export { app }
