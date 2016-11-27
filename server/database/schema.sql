@@ -2,7 +2,7 @@
 CREATE TABLE userTypes
 (
 	id int AUTO_INCREMENT,
-	typeName varchar(30),	
+	type_name varchar(30),	
 	CONSTRAINT pk_userTypes PRIMARY KEY(id)
 );
 
@@ -14,7 +14,7 @@ CREATE TABLE users
 	last_name varchar(30),
 	email varchar(200) unique,
     email_verified int,
-	pwd varchar(60),
+	password varchar(60),
 	district varchar(30),
 	nic varchar(10),
 	phone_no varchar(12),
