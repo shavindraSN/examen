@@ -5,10 +5,10 @@
 ///<reference path="../../typings/globals/connect-flash/index.d.ts"/>
 
 import { Router, Request, Response } from "express";
-import * as passport from "passport";
+import * as passport from 'passport';
 import * as session from 'express-session';
 import * as localStrategy from "passport-local";
-import * as bcrypt from "bcryptjs"
+import * as bcrypt from 'bcryptjs';
 import * as mysql from 'mysql';
 var flash = require('connect-flash')
 
@@ -68,21 +68,12 @@ authRouter.use(passport.session());
 
 
 authRouter.post('/login', passport.authenticate('local-login', {
-    failureRedirect: '/#/initquiz', // redirect back to the signup page if there is an error
+    failureRedirect: '/#login', // redirect back to the signup page if there is an error
 }),
     (req, res) => {
-        console.log("hello");
-
-        // if (req.body.remember) {
-        //     req.session.cookie.maxAge = 1000 * 60 * 3;
-        // } else {
-        //     req.session.cookie.expires = false;
-        // }
-        console.log(req.body);
-        console.log(res);
-        res.redirect('/#/home');
+       res.json({key: '##dc$d1@%8'});
     });
 
-authRouter.use(flash());
+//authRouter.use(flash());
 
 export { authRouter, passport }
