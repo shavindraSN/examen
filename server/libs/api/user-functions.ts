@@ -1,5 +1,6 @@
 ///<reference path="../../../typings/globals/mysql/index.d.ts"/>
 import * as mysql from 'mysql';
+import { User } from '../../../client/sharedClasses/user'
 
 export class UserFunctions {
 
@@ -78,21 +79,10 @@ export class UserFunctions {
      * 
      */ 
 
-    uploadUser(fname,lname,email,email_ver,pwd,district,nic,pno,pno_ver,ty_id,connection: mysql.IConnection, callback){
-        let u_fname = fname.toString();
-		let u_lname = lname.toString();
-		let u_email = email.toString();
-		let u_email_ver = email_ver.toString();
-		let u_pwd = pwd.toString();
-		let u_district = district.toString();
-		let u_nic = nic.toString();
-		let u_pno = pno.toString();
-		let u_pno_ver = pno_ver.toString();
-		let u_ty_id = ty_id.toString();
-		
-	
-      let query = 'INSERT INTO users VALUES(' +u_fname+ ','+u_lname+','+u_email+','+u_email_ver+','+u_pwd+','+u_district+','+u_nic+','+u_pno+','+u_pno_ver+','+u_ty_id+')';
-        connection.query(query, (err, res) => {
+    registerUser(user: User, connection: mysql.IConnection, callback){
+      let query = "INSERT INTO users (first_name, last_name, email, email_verified, password, district, nic, phone_no, phone_no_verified, type_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        connection.query(query, [user.first_name, user.last_name, user.email, user.email_verified, user.password, user.district, user.nic, user.phone, user.phone_no_verified, user.type_id], (err, res) => {
             callback(res);
         });
     }
@@ -113,6 +103,16 @@ export class UserFunctions {
         connection.query(query, (err, res) => {
             callback(res);
         });
+    }
+
+    /**
+     * Get User types from the database
+     */
+    getUserTypes(connection: mysql.IConnection, callback) {
+        let query = 'SELECT * FROM usertypes';
+        connection.query(query, (err, row) => {
+            callback(row);
+        })
     }
 
 }
