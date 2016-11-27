@@ -26,11 +26,13 @@ export class LoginService {
         return this._http.post(url, body, options)
         .toPromise()
         .then(data => {
-            if(data) {
-                console.log('success case-- ', data);
+            let key = '';
+            
+            if(this.isJson(data._body)) {
+                this._router.navigateByUrl('/home');
             } else {
-                console.log('wrong case-- ', data);
-                //this._router.navigateByUrl('/login')
+                console.log('wrong case-- ');
+                
             }
         })
         .catch(this.handleError)
@@ -62,5 +64,15 @@ export class LoginService {
     handleError(error: any): Promise<any> {
         console.error('An Error occurred ', error);
         return Promise.reject(error.message || error);
+    }
+
+    isJson(str: string): boolean {
+        try {
+            JSON.parse(str);
+        }
+        catch (e) {
+            return false;
+        }
+        return true;
     }
 }
