@@ -80,9 +80,14 @@ export class UserFunctions {
      */ 
 
     registerUser(user: User, connection: mysql.IConnection, callback){
-      let query = "INSERT INTO users (first_name, last_name, email, email_verified, password, district, nic, phone_no, phone_no_verified, type_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      let query = `INSERT INTO users (first_name, last_name, email,
+       email_verified, password, district, nic, phone_no, phone_no_verified, 
+       type_id, verification_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
         
-        connection.query(query, [user.first_name, user.last_name, user.email, user.email_verified, user.password, user.district, user.nic, user.phone, user.phone_no_verified, user.type_id], (err, res) => {
+        connection.query(query, [user.first_name, user.last_name, 
+         user.email, user.email_verified, user.password, 
+         user.district, user.nic, user.phone, user.phone_no_verified, 
+         user.type_id, user.veri_code], (err, res) => {
             callback(res);
         });
     }
@@ -112,7 +117,6 @@ export class UserFunctions {
         let query = 'SELECT * FROM usertypes';
         connection.query(query, (err, row) => {
             callback(row);
-        })
+        });
     }
-
 }
