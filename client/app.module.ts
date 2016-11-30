@@ -14,6 +14,8 @@ import { HomeModule } from "./components/home/home.module";
 
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { VerifyEmailComponent } from './components/verifyEmail/verify-email.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { RegistrationComponent } from './components/registration/registration.co
         NgSemanticModule,
         ContactModule,
         HomeModule,
-        routing
+        routing,
+        SimpleNotificationsModule
     ],
     providers: [
         provideAuth({
@@ -37,6 +40,7 @@ import { RegistrationComponent } from './components/registration/registration.co
         AppComponent,
         LoginComponent,
         RegistrationComponent,
+        VerifyEmailComponent,
     ],
     bootstrap: [AppComponent],
     schemas: [
