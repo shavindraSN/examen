@@ -1,6 +1,6 @@
 ///<reference path="../../../typings/globals/mysql/index.d.ts"/>
 import * as mysql from 'mysql';
-import { User } from '../../../client/sharedClasses/user'
+import { User } from '../../models/user'
 
 export class UserFunctions {
 
