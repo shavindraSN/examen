@@ -29,12 +29,37 @@ export class RegistrationService {
             .catch(this.handleError);
     }
 
+    sendVerificationMail(user: User): Promise<User> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let url = '/mailer/send';
+        let email = {
+            recipientMail: user.email,
+            subject: 'Email Verification',
+            text: 'Dear ' + user.first_name + ',\nWelcome to the Examen\n Your verification code: ' + user.veri_code
+        }
+        return this._http.post(url, email, options)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    }
+
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
     private extractData(res: Response) {
-        let body = res.json();
-        return body.data || {};
+        let body = {};
+        if(res._body === '') {
+            body = {
+                res: {code: '1036', message: 'Primary key conflict'}
+            }
+        }
+        else {
+            body = {
+                res: JSON.parse(res._body)
+            }
+        }
+        return body;
     }
 }

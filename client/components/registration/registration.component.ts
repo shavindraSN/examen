@@ -1,12 +1,14 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 import { RegistrationService } from './registration.service';
 import { User, UserType } from '../../sharedClasses/User';
 import { districtList, District } from './districts';
+import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 
 @Component({
     selector: 'login',
     templateUrl: 'client/components/registration/registration.component.html',
-    styleUrls: ['client/components/registration/registration.styles.css'],
+    styleUrls: ['client/customCss/login-style.css'],
     providers: [RegistrationService]
 })
 /**
@@ -23,7 +25,21 @@ export class RegistrationComponent implements AfterViewInit, OnInit {
     districts = districtList;
     validationMessage: string;
 
-    constructor(private registrationService: RegistrationService) { }
+    options = {
+        position: ['top', 'right'],
+        timeOut: 3000,
+        lastOnBottom: true,
+        clickToClose: true
+    };
+
+    model: any = {};
+    error: boolean = false;
+
+    constructor(
+        private registrationService: RegistrationService,
+        private _notification: NotificationsService,
+        private _router: Router
+    ) { }
 
     ngAfterViewInit() {
         $.material.init()
@@ -71,8 +87,19 @@ export class RegistrationComponent implements AfterViewInit, OnInit {
     }
     registerUser(user: User) {
         this.registrationService.registerUser(user)
-            .then(response => console.log(response));
+            .then(response => {
+                console.log(response);
+                if(response.res.code == 1036) {
+                    this._notification.error('Account already exists', 'The Email you entered is already registered');
+                }
+                else {
+                    // route to verification process
+                    console.log(response.res);
+                    this._router.navigateByUrl('/verifyEmail/' + user.first_name + '/' +response.res.insertId);
+                }
+            });
     }
+
     ngOnInit() {
         this.getUserTypes();
     }
