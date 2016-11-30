@@ -3,7 +3,7 @@
 import { Router, Response, Request, NextFunction } from "express";
 import { DbConnector } from '../../libs/common/db-connector';
 import { UserFunctions } from '../../libs/api/user-functions';
-import { User } from '../../../client/sharedClasses/user';
+import { User } from '../../models/user';
 import { MailFunctions } from '../../libs/api/mail-functions';
 
 import * as bcrypt from 'bcryptjs';
