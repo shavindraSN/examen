@@ -3,6 +3,8 @@ import * as mysql from 'mysql';
 import * as Excel from "xls-to-json";
 import { Question } from '../../../client/sharedClasses/question';
 import { Answer } from '../../../client/sharedClasses/answer';
+import { Error } from '../../../client/sharedClasses/error';
+import { User } from '../../../client/sharedClasses/user';
 
 export class QuestionFunctions {
     /**
@@ -129,7 +131,7 @@ export class QuestionFunctions {
         return questionArray;
     }
 
-/**
+    /**
      * Upload Questions from Excel Sheet to Server
      * Excel file extention could be .xls and .xlsx only
      * 
@@ -151,5 +153,52 @@ export class QuestionFunctions {
             }
         });
 
+    }
+
+    /**
+     * Insert question object to database. This process involve several steps
+     * Inserting question to question table and insert answers details to answer table.
+     * This function flatten the question object and create SQL query and execute created query,
+     * get results and post those results to the request
+     */
+    addQuestion(connection: mysql.IConnection, question: Question, user: User, callback) {
+        // Get the question ID and insert for answer table 
+        // LAST_INSERT_ID()
+        // Refer: http://stackoverflow.com/questions/5178697/mysql-insert-into-multiple-tables-database-normalization
+        let answer_query = `INSERT INTO answers(question_id, is_image, answer_no, answer, image_url) 
+                            VALUES`;
+
+        for(let answer of question.answers) {
+            answer_query += '(LAST_INSERT_ID()' + ',' + answer.answer_is_image + ',' + answer.answer_no + ',' + 
+                            answer.answer + ',' + answer.answer_image_url + '),'
+        }
+        let question_query = `INSERT INTO questions
+                    (correct_ans_no, question_time, paper_id, user_id, subject_id, is_image, image_url, question) 
+                    VALUES(` + question.correct_ans_no + `,`+ question.question_time + `,`+ question.paper_id + `,`+ 
+                     user.id + `,` + question.subject_id + `,`+ question.is_image + `,` + question.image_url +`,` + 
+                     question.question +`);`;
+
+        let transaction = 'BEGIN; ' + question_query +  ' ' + answer_query + 'COMMIT;';
+
+        connection.query(transaction, (err, result) => {
+            callback(result);
+        });
+    }
+
+    validateQuestionObject(question: Question): Error {
+        let error = new Error();
+        if(!question.correct_ans_no || question.correct_ans_no) {
+            error.err_no = 1601;
+            error.err_msg = 'No correct answer number provided. Make sure to give correct answer number.';
+        }
+        else if(question.correct_ans_no < 1 || question.correct_ans_no > question.answers.length) {
+            error.err_no = 1602;
+            error.err_msg = 'Answer number correct. Answer number should not less than 1, more than max number';
+        }
+        /**
+         * TO BE implemented - Complete validator logic.
+         */
+
+        return error;
     }
 }

@@ -1,0 +1,53 @@
+<div class="header-panel shadow-z-2">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-3">
+				<img class="col-md-offset-1" width="130px" height="150px" src="assets/images/logo.png">
+				<h1>Examen</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid main">
+	<div class="row">
+		<div class="pages col-xs-9">
+			<div class="row">
+				<div class="col-xs-8">
+					<div class="well page active" id="about">
+						<h1 class="header">Verify Email</h1>
+						<br>
+						<!-- Verify Email Body -->
+
+						<form #verifyEmailform="ngForm" (ngSubmit)=onSubmit(verifyEmailform.form) class="form-horizontal">
+							<p>
+								Dear {{ userFName }},
+							</p>
+							<p>We have sent you a Email. Check your inbox and if not please check in side spam folder
+								and enter the verification code below.
+							</p>
+							<fieldset>
+								<div class="form-group">
+									<label for="inputCode" class="col-md-2 control-label">Email</label>
+
+									<div class="col-md-10">
+										<input type="number" class="form-control" name="inputCode" id="inputCode" [(ngModel)]="verifyEmailform.form.value.inputCode" placeholder="Enter code">
+									</div>
+								</div>
+								
+								
+								<div class="form-group">
+									<div class="col-md-10 col-md-offset-2">
+										<button type="submit" class="btn btn-info">Resend Email</button>
+										<a [routerLink]="['/registration']" class="btn btn-raised btn-primary">verify</a>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+						<!-- Verify Email Body -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
