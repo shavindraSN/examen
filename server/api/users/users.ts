@@ -1,11 +1,16 @@
 ///<reference path="../../../typings/globals/mysql/index.d.ts"/>
 ///<reference path="../../../typings/globals/bcryptjs/index.d.ts"/>
 import { Router, Response, Request, NextFunction } from "express";
-import * as mysql from 'mysql';
-import * as bcrypt from 'bcryptjs';
 import { DbConnector } from '../../libs/common/db-connector';
 import { UserFunctions } from '../../libs/api/user-functions';
 import { User } from '../../../client/sharedClasses/user';
+import { MailFunctions } from '../../libs/api/mail-functions';
+
+import * as bcrypt from 'bcryptjs';
+import * as mysql from 'mysql';
+import * as http from 'http';
+
+import { hostConfig } from '../../config'
 
 const users: Router = Router();
 
@@ -91,7 +96,7 @@ users.post("/register", (request: Request, response: Response) => {
     let dbConnector = new DbConnector();
     let userFunctions = new UserFunctions()
     let connector: mysql.IConnection;
-    
+
     dbConnector.connectToDb((error, connection) => {
         if (error) {
             return response.json({
@@ -104,13 +109,13 @@ users.post("/register", (request: Request, response: Response) => {
             user.last_name = request.body.last_name;
             user.email = request.body.email;
             user.email_verified = false;
-            if(request.body.password){
+            if (request.body.password) {
                 user.password = bcrypt.hashSync(request.body.password);
             }
-            else if(request.body.hashed_password){
+            else if (request.body.hashed_password) {
                 user.password = request.body.hashed_password;
             }
-            else if(request.body.password && request.body.hashed_password) {
+            else if (request.body.password && request.body.hashed_password) {
                 user.password = request.body.hashed_password;
             }
             user.district = request.body.district;
@@ -118,11 +123,20 @@ users.post("/register", (request: Request, response: Response) => {
             user.phone = request.body.phone;
             user.phone_no_verified = request.body.phone_no_verified;
             user.type_id = request.body.type_id;
-
+            user.veri_code = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
             userFunctions.registerUser(user, connection, (data) => {
-                response.json("true");
+                response.json(data);
             });
 
+            let emailSubject = 'Email Verification';
+            let emailText = 'Dear ' + user.first_name + ',\nWelcome to the Examen.\nYour verification code: ' + user.veri_code
+            
+            let mailFunctions = new MailFunctions();
+            mailFunctions.sendMail(user.email, emailSubject, emailText, (err, info) => {
+                if(err) {
+                    console.log('Email sending error:', err)
+                }
+            });
         }
     })
 });
