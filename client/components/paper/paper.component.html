@@ -1,0 +1,76 @@
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Exam Summary</div>
+				<div class="panel-body">
+					<div class="col-md-6">
+						<h5>Total Time</h5>
+						<h5>Time Remaining</h5>
+						<h5>Time Elapsed</h5>
+					</div>
+					<div class="col-md-4">
+						<h5>{{ paperTime }} mins</h5>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">Question Navigation Panel</div>
+				<div class="panel-body">
+					<div class="btn-group">
+						<a class="btn btn-raised" *ngFor="let question of questions" (click)=onSelect(question)>{{ question.qno }}</a>
+					</div>
+					<a class="btn btn-info">Submit Answers</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+
+			<div class="panel panel-default" *ngIf!="selectedQuestion">
+				<div class="panel-body">
+					<h3>Get ready for the session</h3>
+          <p>Your exam is about to start. Please read the instructions carefully. Once you are ready
+            you can start the exam by clicking either on a question on Question Navigation Panel or
+            Start button
+          </p>
+          <h4>General Instructions</h4>
+          <ul>
+            <li>Remaining time will show on left side</li>
+            <li>If you are done, you can submit by clicking <b>Submit Answers</b> button</li>
+            <li>Once the time is up your answers will automatically submitted</li>
+            <li>Select only on an answer</li>
+            <li>To navigate between questions, use Question Navigation Panel. Each button with a number represents a question</li>
+          </ul>
+				</div>
+        <div class="row">
+          <div class="col-md-12 col-sm-offset-9">
+             <a class="btn btn-info">Let's  Start!</a>
+          </div>
+        </div>
+			</div>
+
+			<div class="well well-lg" *ngIf="selectedQuestion">
+				<!-- Question Displaying area -->
+				<h4>{{ selectedQuestion.qno }}.</h4>
+				<h5><b>{{ selectedQuestion.question }}</b></h5>
+			</div>
+
+			<div class="well well-lg" *ngIf="selectedQuestion">
+				<!-- Answer Displaying area -->
+				<h3>Select one</h3>
+				<div class="radio radio-primary" *ngFor="let answer of selectedQuestion.answers" (click)="onAnswerSelect(answer)">
+					<label>
+
+            <!--<input type="radio" name="optionsRadios" id="{{ answer }}" value="{{ answer }" *ngIf="questions.selectedAnswerNo">-->
+            <input type="radio" name="optionsRadios" [id]="answer.answer_no" value="{{ answer }" 
+						[checked]="answer.answer_no === questions[selectedQuestion.qno-1].selectedAnswerNo">
+						{{answer.answer}}
+          </label>
+				</div>
+				<!--  end Form group-->
+			</div>
+		</div>
+	</div>
+</div>

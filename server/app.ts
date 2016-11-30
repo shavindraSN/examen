@@ -1,12 +1,17 @@
+///<reference path="../typings/globals/express-session/index.d.ts"/>
+
 import * as express from "express";
+import * as session from "express-session";
 import { join } from "path";
 import * as favicon from "serve-favicon";
 import { json, urlencoded } from "body-parser";
-
 import { loginRouter } from "./routes/login";
 import { protectedRouter } from "./routes/protected";
 import { users } from './api/users/users';
 import { questions } from './api/questions/questions';
+import { subjects } from './api/subjects/subjects';
+import { authRouter } from './routes/passport' ;
+import { mailer } from './api/mailer/send-mail'
 
 const app: express.Application = express();
 app.disable("x-powered-by");
@@ -18,10 +23,12 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 // Registering API Routes
-app.use("/api", protectedRouter);
+app.use("/api", authRouter);
 app.use("/login", loginRouter);
 app.use('/users', users);
 app.use('/questions', questions);
+app.use('/subjects', subjects);
+app.use('/mailer', mailer);
 
 app.use('/client', express.static(join(__dirname, '../client')));
 

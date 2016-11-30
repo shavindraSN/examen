@@ -2,10 +2,16 @@
   "name": "examen",
   "dependencies": {},
   "globalDependencies": {
+    "bcryptjs": "registry:dt/bcryptjs#2.3.0+20151217030501",
+    "connect-flash": "registry:dt/connect-flash#0.0.0+20160317120654",
     "express": "registry:dt/express#4.0.0+20160708185218",
+    "express-session": "registry:dt/express-session#0.0.0+20160930124524",
     "jquery": "registry:dt/jquery#1.10.0+20160929162922",
     "mysql": "registry:dt/mysql#0.0.0+20160316155526",
     "node": "registry:dt/node#6.0.0+20161019125345",
+    "nodemailer": "registry:dt/nodemailer#1.3.2+20160811111312",
+    "passport": "registry:dt/passport#0.2.0+20161028150851",
+    "passport-local": "registry:dt/passport-local#0.0.0+20160316155526",
     "shuffle-array": "registry:dt/shuffle-array#0.0.0+20151206140107"
   }
 }

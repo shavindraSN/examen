@@ -1,0 +1,136 @@
+<div class="header-panel shadow-z-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-3">
+                <img class="col-md-offset-1" width="130px" height="150px" src="assets/images/logo.png">
+                <h1>Examen</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid main">
+    <div class="row">
+        <div class="pages col-xs-9">
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="well page active" id="about">
+                        <h1 class="header">Register to Examen</h1>
+                        <br>
+                        <!-- Registration Body -->
+
+                        <form #registerform="ngForm" (ngSubmit)=onSubmit(registerform.form) class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="inputFName" class="col-md-2 control-label">First Name</label>
+
+                                    <div class="col-md-10">
+                                        <input type="text" required class="form-control" name="inputFName" id="inputFName" [(ngModel)]="registerform.form.value.inputFName"
+                                            placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLName" class="col-md-2 control-label">Last Name</label>
+
+                                    <div class="col-md-10">
+                                        <input type="text" required class="form-control" name="inputLName" id="inputLName" [(ngModel)]="registerform.form.value.inputLName"
+                                            placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail" class="col-md-2 control-label">Email</label>
+
+                                    <div class="col-md-10">
+                                        <input type="email" required class="form-control" name="inputEmail" id="inputEmail" [(ngModel)]="registerform.form.value.inputEmail"
+                                            placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone" class="col-md-2 control-label">Phone number</label>
+
+                                    <div class="col-md-10">
+                                        <input type="number" required class="form-control" name="inputPhone" id="inputPhone" [(ngModel)]="registerform.form.value.inputPhone"
+                                            placeholder="Phone Number">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputNic" class="col-md-2 control-label">NIC Number</label>
+
+                                    <div class="col-md-6">
+                                        <input type="number" required class="form-control" name="inputNic" id="inputNic" [(ngModel)]="registerform.form.value.inputNic"
+                                            placeholder="NIC Number E.g: 911162478">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword" class="col-md-2 control-label">Password</label>
+
+                                    <div class="col-md-6">
+                                        <input type="password" required class="form-control" name="inputPassword" [(ngModel)]="password" id="inputPassword"
+                                            placeholder="Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputCnfrmPassword" class="col-md-2 control-label">Confirm Password</label>
+
+                                    <div class="col-md-6">
+                                        <input type="password" required class="form-control" name="inputCnfrmPassword" [(ngModel)]="cnfrmPassword"
+                                            id="inputCnfrmPassword" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                    <div *ngIf="!validForm()"class="alert alert-danger" role="alert">{{ validationMessage }}</div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Radios</label>
+
+                                    <div class="col-md-6">
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="male" checked="">Male
+                                            </label>
+                                        </div>
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="female">Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="selectDistrict" class="col-md-2 control-label">Select District</label>
+
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="selectDistrict" required [(ngModel)]="districtID" name="selectDistrict" #selectDistrict="ngModel">
+                                            <option *ngFor="let district of districts" [value]="district.district">{{ district.district }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selectUserType" class="col-md-2 control-label">Select User Roll</label>
+
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="selectUserType" required [(ngModel)]="userTypeID" name="selectUserType" (ngModelChange)="onChange($event)" #selectUserType="ngModel">
+                                            <option *ngFor="let userType of userTypes" [value]="userType.id">{{ userType.type_name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div *ngIf="selectedUserTypeID == 2" class="alert alert-warning col-md-10 col-md-offset-1" role="alert">
+                                    Warning! User Type Teacher goes through a verification process. You may not be able to access
+                                    until you account is verified. This may take upto 48 hours.
+                                    </div>
+                                <div class="form-group">
+                                    <div class="col-md-10 col-md-offset-8">
+                                        <button type="submit" [disabled]=!validForm()   class="btn btn-raised btn-primary">Register</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <!-- Register Body -->
+                    </div>
+                </div>
+                <simple-notifications [options]="options"></simple-notifications>
+            </div>
+        </div>
+    </div>
+</div>

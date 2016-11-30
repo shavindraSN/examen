@@ -1,5 +1,8 @@
 ///<reference path="../../../typings/globals/mysql/index.d.ts"/>
 import * as mysql from 'mysql';
+import * as Excel from "xls-to-json";
+import { Question } from '../../../client/sharedClasses/question';
+import { Answer } from '../../../client/sharedClasses/answer';
 
 export class QuestionFunctions {
     /**
@@ -38,7 +41,7 @@ export class QuestionFunctions {
      * 
      */
     getQuestions(subjectID: number, connection: mysql.IConnection, callback) {
-        let query = 'SELECT * FROM questions WHERE= '+ subjectID.toString();
+        let query = 'SELECT * FROM questions WHERE= ' + subjectID.toString();
         connection.query(query, (err, rows) => {
             callback(rows);
         });
@@ -57,11 +60,96 @@ export class QuestionFunctions {
     /**
      * retrieve question and its all the details for given set of question IDs
      */
-    getQuestionsById(questionIDs: number[], connection: mysql.IConnection, callback){
+    getQuestionsById(questionIDs: number[], connection: mysql.IConnection, callback) {
         let stringList = '(' + questionIDs.toString() + ')';
-        let query = 'SELECT * FROM questions WHERE id in ' + stringList;
+        let query = `SELECT q.id, q.correct_ans_no, q.question_time, q.paper_id, q.subject_id, q.is_image, q.image_url, q.question,
+                        a.id as answer_id, a.is_image as is_answer_image, a.answer_no, a.answer, a.image_url
+                    FROM questions q, answers a
+                    WHERE q.id = a.question_id AND q.id IN ` + stringList;
         connection.query(query, (err, rows) => {
-            callback(rows);
+            //this.questionObjectMaker(rows);
+            callback(this.questionObjectMaker(rows));
         });
+    }
+
+    /**
+     * Create Question object array using row objects retrieve from the database
+     * This question array contains question details and answer details as per to their
+     * class specification Answer and Question
+     * 
+     * @param {object} rowObjects - array of row object returned by mysql query method
+     * 
+     * @return {Question[]} - question array with Question class specification
+     */
+    questionObjectMaker(rowObjects): Question[] {
+        let questionArray: Question[] = [];
+        let tempObject: Question;
+        let qid: number;
+        let qno: number = 1;
+        for (let rowObject of rowObjects) {
+            if (!tempObject || tempObject.id != rowObject.id) {
+                tempObject = new Question();
+
+                tempObject.id = rowObject.id;
+                tempObject.qno = qno;
+                tempObject.correct_ans_no = rowObject.correct_ans_no;
+                tempObject.question_time = rowObject.question_time;
+                tempObject.paper_id = rowObject.paper_id;
+                tempObject.subject_id = rowObject.subject_id;
+                tempObject.is_image = rowObject.is_image;
+                tempObject.image_url = rowObject.image_url;
+                tempObject.question = rowObject.question;
+
+                tempObject.answers = [];
+                tempObject.answers.push({
+                    answer_no: rowObject.answer_no,
+                    answer_id: rowObject.answer_id,
+                    answer_is_image: rowObject.answer_is_image,
+                    answer_image_url: rowObject.image_url,
+                    answer: rowObject.answer
+                })
+                qno++;
+            }
+            else {
+                tempObject.answers.push({
+                    answer_no: rowObject.answer_no,
+                    answer_id: rowObject.answer_id,
+                    answer_is_image: rowObject.answer_is_image,
+                    answer_image_url: rowObject.image_url,
+                    answer: rowObject.answer
+                })
+            }
+
+            if (!qid || qid != rowObject.id) {
+                questionArray.push(tempObject);
+                qid = rowObject.id;
+            }
+        }
+
+        return questionArray;
+    }
+
+/**
+     * Upload Questions from Excel Sheet to Server
+     * Excel file extention could be .xls and .xlsx only
+     * 
+     * @param {variable} fileName - name and path of the input excel file
+     * 
+     * @param {variable} sheetName - name of the sheet which questions are on
+     */
+    uploadQuestionsExcel(fileName, sheetName) {
+     Excel({
+                input: fileName,  
+                output: null, 
+                sheet: sheetName  
+        }, function (err, result) {
+                 if (err) {
+                     console.error(err);
+                } else {
+                console.log(result);
+                 return result;
+            }
+        });
+
     }
 }
