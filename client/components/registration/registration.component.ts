@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { RegistrationService } from './registration.service';
-import { User, UserType } from '../../sharedClasses/User';
+import { User, UserType } from '../../sharedClasses/user';
 import { districtList, District } from './districts';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 
