@@ -11,6 +11,7 @@ export class User {
     type_id: number;
     type: string;
     password: string;
+    veri_code: number;
 }
 export class UserType {
     id: number;
