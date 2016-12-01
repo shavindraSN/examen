@@ -4,7 +4,7 @@ import * as mysql from 'mysql';
 import { DbConnector } from '../../libs/common/db-connector';
 import { QuestionFunctions } from '../../libs/api/question-functions';
 import { QuizFunctions } from '../../libs/api/quiz-functions';
-import { Question } from '../../../client/sharedClasses/question';
+import { Question } from '../../models/question';
 
 const questions: Router = Router();
 /**

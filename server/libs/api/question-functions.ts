@@ -1,10 +1,10 @@
 ///<reference path="../../../typings/globals/mysql/index.d.ts"/>
 import * as mysql from 'mysql';
 import * as Excel from "xls-to-json";
-import { Question } from '../../../client/sharedClasses/question';
-import { Answer } from '../../../client/sharedClasses/answer';
-import { Error } from '../../../client/sharedClasses/error';
-import { User } from '../../../client/sharedClasses/user';
+import { Question } from '../../models/question';
+import { Answer } from '../../models/answer';
+import { Error } from '../../models/error';
+import { User } from '../../models/user';
 
 export class QuestionFunctions {
     /**

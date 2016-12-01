@@ -1,6 +1,6 @@
 ///<reference path="../../../typings/globals/mysql/index.d.ts"/>
 import * as mysql from 'mysql';
-import { Subject } from '../../../client/sharedClasses/subject';
+import { Subject } from '../../models/subject';
 
 export class SubjectFunctions {
 
