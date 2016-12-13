@@ -1,6 +1,7 @@
 ///<reference path="../../../typings/globals/mysql/index.d.ts"/>
 import * as mysql from 'mysql';
-import * as Excel from "xls-to-json";
+//import * as Excel from "xls-to-json";
+var Excel = require('xls-to-json');
 import { Question } from '../../models/question';
 import { Answer } from '../../models/answer';
 import { Error } from '../../models/error';
