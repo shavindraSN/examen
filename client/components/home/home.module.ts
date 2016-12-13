@@ -12,6 +12,7 @@ import { InitQuizPaperComponent } from '../initQuizPaper/init-quiz-paper.compone
 import { PaperSummaryComponent } from '../paperSummary/paper-summary.component';
 import { PaperComponent } from '../paper/paper.component';
 import { AddQuestionsComponent } from '../uploadQuestions/addQuestions/add-questions.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import { AddQuestionsComponent } from '../uploadQuestions/addQuestions/add-quest
         InitQuizPaperComponent,
         PaperSummaryComponent,
         PaperComponent,
+        ProfileComponent,
         AddQuestionsComponent
     ],
     bootstrap: [
