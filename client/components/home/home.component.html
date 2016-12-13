@@ -1,3 +1,7 @@
+<div [class.hidden]="authenticate">
+	<h4>You do not have permission to access</h4>
+</div>
+<div [class.hidden]="!authenticate">
 <navbar></navbar>
 <div class="container">
 	<!-- Model Paper panel -->
@@ -13,3 +17,4 @@
 </div>
 <router-outlet></router-outlet>
 <router-outlet></router-outlet>
+</div>
