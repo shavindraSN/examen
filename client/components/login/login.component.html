@@ -1,61 +1,78 @@
-<div class="header-panel shadow-z-2">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-3">
-				<img class="col-md-offset-1" width="130px" height="150px" src="assets/images/logo.png">
-				<h1>Examen</h1>
-			</div>
-		</div>
+<div [class.hidden]="authenticate">
+	<div class="alert alert-dismissible alert-success">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<h4>Redirecting!</h4>
+
+		<p> Please wait while Redirecting
+			<a href="javascript:void(0)" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
 	</div>
 </div>
 
-<div class="container-fluid main">
-	<div class="row">
-		<div class="pages col-xs-9">
+<div [class.hidden]="!authenticate">
+	<div class="header-panel shadow-z-2">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-8">
-					<div class="well page active" id="about">
-						<h1 class="header">Login</h1>
-						<br>
-						<!-- Login Body -->
+				<div class="col-xs-3">
+					<img class="col-md-offset-1" width="130px" height="150px" src="assets/images/logo.png">
+					<h1>Examen</h1>
+				</div>
+			</div>
+		</div>
+	</div>
 
-						<form #loginform="ngForm" (ngSubmit)=onSubmit(loginform.form) class="form-horizontal">
-							<fieldset>
+	<div class="container-fluid main">
+		<div class="row">
+			<div class="pages col-xs-9 col-md-9">
+				<div class="row">
+					<div class="col-xs-8 col-md-8">
+						<div class="well page active" id="about">
+							<h1 class="header">Login</h1>
+							<br>
+							<!-- Login Body -->
 
-								<div class="form-group">
-									<label for="inputEmail" class="col-md-2 control-label">Email</label>
-
-									<div class="col-md-10">
-										<input type="email" class="form-control" name="inputEmail" id="inputEmail" [(ngModel)]="loginform.form.value.inputEmail" placeholder="Email">
+							<form #loginform="ngForm" (ngSubmit)=onSubmit(loginform.form) class="form-horizontal">
+								<fieldset>
+									<div *ngIf="!validLogin()" class="alert alert-danger" role="alert">
+										<h4>Login Error</h4>
+										Invalid Username or Password. Please double-check and try again.
 									</div>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword" class="col-md-2 control-label">Password</label>
+									<div class="form-group">
+										<label for="inputEmail" class="col-md-2 control-label">Email</label>
 
-									<div class="col-md-10">
-										<input type="password" class="form-control" name="inputPassword" [(ngModel)]="loginform.form.value.inputPassword" id="inputPassword" placeholder="Password">
-									</div>
-								</div>
-
-								<div class="form-group" style="margin-top: 0;">
-									<!-- inline style is just to demo custom css to put checkbox below input above -->
-									<div class="col-md-offset-2 col-md-10">
-										<div class="checkbox">
-											<label>
-                        						<input type="checkbox"> Remember Me
-                      						</label>
+										<div class="col-md-10">
+											<input type="email" required class="form-control" name="inputEmail" id="inputEmail" [(ngModel)]="loginform.form.value.inputEmail"
+												placeholder="Email">
 										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-md-10 col-md-offset-2">
-										<button type="submit" class="btn btn-raised btn-primary">Login</button>
-										<a [routerLink]="['/registration']" class="btn btn-info">Register Now</a>
+									<div class="form-group">
+										<label for="inputPassword" class="col-md-2 control-label">Password</label>
+
+										<div class="col-md-10">
+											<input type="password" required class="form-control" name="inputPassword" [(ngModel)]="loginform.form.value.inputPassword"
+												id="inputPassword" placeholder="Password">
+										</div>
 									</div>
-								</div>
-							</fieldset>
-						</form>
-						<!-- Login Body -->
+
+									<div class="form-group" style="margin-top: 0;">
+										<!-- inline style is just to demo custom css to put checkbox below input above -->
+										<div class="col-md-offset-2 col-md-10">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox"> Remember Me
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-10 col-md-offset-2">
+											<button type="submit" class="btn btn-raised btn-primary">Login</button>
+											<a [routerLink]="['/registration']" class="btn btn-info">Register Now</a>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+							<!-- Login Body -->
+						</div>
 					</div>
 				</div>
 			</div>
