@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { routing } from './home.routing';
 import { FormsModule }   from '@angular/forms';
 
+import { GraphModule } from '../shared/graph/graph.module';
 import { HomeComponent } from './home.component';
 import { NavBarModule } from '../shared/navbar/navbar.module';
 import { ModelPaperModule } from './modelPaper/model-paper.module';
@@ -20,6 +21,7 @@ import { ProfileComponent } from '../profile/profile.component';
         FormsModule,
         routing,
         NavBarModule,
+        GraphModule,
         ModelPaperModule,
         TimeModeModule
     ],
