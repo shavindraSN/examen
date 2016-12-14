@@ -14,6 +14,8 @@ import { PaperSummaryComponent } from '../paperSummary/paper-summary.component';
 import { PaperComponent } from '../paper/paper.component';
 import { AddQuestionsComponent } from '../uploadQuestions/addQuestions/add-questions.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { ResultsComponent } from '../results/results.component';
+import { HistoryComponent } from '../history/history.component'
 
 @NgModule({
     imports: [
@@ -32,7 +34,9 @@ import { ProfileComponent } from '../profile/profile.component';
         PaperSummaryComponent,
         PaperComponent,
         ProfileComponent,
-        AddQuestionsComponent
+        AddQuestionsComponent,
+        ResultsComponent,
+        HistoryComponent
     ],
     bootstrap: [
         HomeComponent
