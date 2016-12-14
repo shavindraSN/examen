@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Subject } from '../../sharedClasses/subject'
@@ -31,5 +31,19 @@ export class PaperService {
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
+    }
+
+    saveResults(results) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let url = '/questions/mark';
+        console.log(results);
+        return this._http.post(url, results, options)
+        .toPromise()
+        .then(data => {
+        })
+        .catch(() => {
+            console.log('result saving error')
+        })
     }
 }
