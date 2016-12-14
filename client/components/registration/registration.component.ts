@@ -68,8 +68,6 @@ export class RegistrationComponent implements AfterViewInit, OnInit {
     }
 
     onSubmit(form) {
-        //console.log(form.value.selectDistrict);
-        //console.log(form.value.selectUserType);
         let newUser = new User();
         newUser.first_name = form.value.inputFName;
         newUser.last_name = form.value.inputLName;
@@ -81,7 +79,6 @@ export class RegistrationComponent implements AfterViewInit, OnInit {
         newUser.phone = form.value.inputPhone;
         newUser.phone_no_verified = false;
         newUser.type_id = form.value.selectUserType;
-        console.log(newUser);
         this.registerUser(newUser);
 
     }

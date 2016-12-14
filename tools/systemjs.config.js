@@ -28,12 +28,17 @@ var isPublic = typeof window != "undefined";
             'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
             'angular2-jwt':               'npm:angular2-jwt/angular2-jwt.js',
             'ng-semantic':                'npm:ng-semantic',
-            'angular2-notifications':     'npm:angular2-notifications'
+            'angular2-notifications':     'npm:angular2-notifications',
+            'ng2-charts':                 'npm:ng2-charts'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
             'angular2-notifications': { 
                 main:'components.js',
+                defaultExtension: 'js' 
+            },
+            'ng2-charts': { 
+                main: 'ng2-charts.js', 
                 defaultExtension: 'js' 
             },
             app: {

@@ -11,7 +11,8 @@ import { users } from './api/users/users';
 import { questions } from './api/questions/questions';
 import { subjects } from './api/subjects/subjects';
 import { authRouter } from './routes/passport' ;
-import { mailer } from './api/mailer/send-mail'
+import { mailer } from './api/mailer/send-mail';
+import { secret } from './config'
 
 const app: express.Application = express();
 app.disable("x-powered-by");
@@ -21,6 +22,11 @@ app.use(express.static(join(__dirname, '../public')));
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: true
+}));
 
 // Registering API Routes
 app.use("/api", authRouter);

@@ -1,4 +1,170 @@
 <navbar></navbar>
-<div class="container">
-		
+
+<div class="container-fluid main">
+    <div class="row">
+        <div class="pages col-xs-12" style="margin-left:300px;" >
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="well page active" id="about">
+                        <h1 class="header">Upload Questions</h1>
+                        <br>
+                        <!-- Registration Body -->
+
+                        <form #registerform="ngForm" (ngSubmit)=onSubmit(registerform.form) class="form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="inputTextQuestion" class="col-md-2 control-label">Question Text</label>  
+
+                                    <div class="col-md-10">                                        
+                                        <textarea required class="form-control" rows="3" name="inputTextQuestion" id="inputTextQuestion" [(ngModel)]="registerform.form.value.inputTextQuestion" placeholder="Enter text question"></textarea>
+                                        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputImageQuestion" class="col-md-2 control-label">Question Image </label>
+
+                                    <div class="col-md-10">
+                                        <input type="text" readonly="" class="form-control" placeholder="Browse Question...">
+                                        <input type="file" id="inputImageQuestion" multiple="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputQuetionTime" class="col-md-2 control-label">Question Time</label>
+
+                                    <div class="col-md-10">
+                                        <input type="number" required class="form-control" name="inputQuetionTime" id="inputQuetionTime" [(ngModel)]="registerform.form.value.inputQuetionTime"
+                                            placeholder="Enter time for particular question">
+                                    </div>
+                                </div>  
+                                <div>
+                                    <h1 class="header">Answers</h1>
+                                </div>                               
+
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="inputTextAnswer1" class="col-md-3 control-label">Answer 1 </label>
+                                            <div class="col-md-9">
+                                                <input type="text" required class="form-control" id="inputTextAnswer1" name="inputTextAnswer1" [(ngModel)]="registerform.form.value.inputTextAnswer1" placeholder="Enter answer text...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <input type="text" readonly="" class="form-control" placeholder="Browse Image Answer 1...">
+                                                <input type="file" id="inputImgAnswer1" multiple="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="inputTextAnswer2" class="col-md-3 control-label">Answer 2 </label>
+                                            <div class="col-md-9">
+                                                <input type="text" required class="form-control" id="inputTextAnswer2" name="inputTextAnswer2" [(ngModel)]="registerform.form.value.inputTextAnswer2" placeholder="Enter answer text...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <input type="text" readonly="" class="form-control" placeholder="Browse Image Answer 2...">
+                                                <input type="file" id="inputImgAnswer2" multiple="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="inputTextAnswer3" class="col-md-3 control-label">Answer 3 </label>
+                                            <div class="col-md-9">
+                                                <input type="text" required class="form-control" id="inputTextAnswer3" name="inputTextAnswer3" [(ngModel)]="registerform.form.value.inputTextAnswer3" placeholder="Enter answer text...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <input type="text" readonly="" class="form-control" placeholder="Browse Image Answer 3...">
+                                                <input type="file" id="inputImgAnswer3" multiple="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="inputTextAnswer4" class="col-md-3 control-label">Answer 4 </label>
+                                            <div class="col-md-9">
+                                                <input type="text" required class="form-control" id="inputTextAnswer4" name="inputTextAnswer4" [(ngModel)]="registerform.form.value.inputTextAnswer4" placeholder="Enter answer text...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <input type="text" readonly="" class="form-control" placeholder="Browse Image Answer 4...">
+                                                <input type="file" id="inputImgAnswer4" multiple="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="inputTextAnswer5" class="col-md-3 control-label">Answer 5 </label>
+                                            <div class="col-md-9">
+                                                <input type="text" required class="form-control" id="inputTextAnswer5" name="inputTextAnswer5" [(ngModel)]="registerform.form.value.inputTextAnswer5" placeholder="Enter answer text...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <input type="text" readonly="" class="form-control" placeholder="Browse Image Answer 3...">
+                                                <input type="file" id="inputImgAnswer5" multiple="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="selectDistrict" class="col-md-2 control-label">Select District</label>
+
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="selectDistrict" required [(ngModel)]="districtID" name="selectDistrict" #selectDistrict="ngModel">
+                                            <option *ngFor="let district of districts" [value]="district.district">{{ district.district }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selectUserType" class="col-md-2 control-label">Select User Roll</label>
+
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="selectUserType" required [(ngModel)]="userTypeID" name="selectUserType" (ngModelChange)="onChange($event)" #selectUserType="ngModel">
+                                            <option *ngFor="let userType of userTypes" [value]="userType.id">{{ userType.type_name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div *ngIf="selectedUserTypeID == 2" class="alert alert-warning col-md-10 col-md-offset-1" role="alert">
+                                    Warning! User Type Teacher goes through a verification process. You may not be able to access
+                                    until you account is verified. This may take upto 48 hours.
+                                    </div>
+                                <div class="form-group">
+                                    <div class="col-md-10 col-md-offset-8">
+                                        <button type="submit"   class="btn btn-raised btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <!-- Register Body -->
+                    </div>
+                </div>
+                <!--<simple-notifications [options]="options"></simple-notifications>-->
+            </div>
+        </div>
+    </div>
 </div>

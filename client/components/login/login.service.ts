@@ -13,7 +13,6 @@ export class LoginService {
      */
 
     Login(email: string, password: string) {
-        console.log('login service triggered');
         let url = '/api/login';
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -31,36 +30,20 @@ export class LoginService {
             if(this.isJson(data._body)) {
                 this._router.navigateByUrl('/home');
             } else {
-                console.log('wrong case-- ');
+                return false;
                 
             }
         })
         .catch(this.handleError)
     }
 
-    login1(username: string, password: string) {
-        let url = 'api/login1';
-
-        console.log('login1 is clicked');
-        
-        this._http.post(url, JSON.stringify({ password: password }), new RequestOptions({
-            headers: new Headers({"Content-Type": "application/json"})
-        }))
-            .map((res: Response) => res.json())
-            .subscribe(
-                (res:Response & {jwt: string }) => {
-                    localStorage.setItem("id_token", res.jwt);
-                },
-                (error: Error) => {console.log('Error occurred on login', error); }
-            );
-    }
-
-
+    /**
+     * Logout from the session. This will remove sessions stored
+     */
     logout(): void {
         localStorage.removeItem("id_token");
     }
 
-    
     handleError(error: any): Promise<any> {
         console.error('An Error occurred ', error);
         return Promise.reject(error.message || error);

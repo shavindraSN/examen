@@ -186,4 +186,39 @@ users.get("/getUserTypes", (request: Request, response: Response) => {
     })
 });
 
+users.post("/verify_user", (request: Request, response: Response) => {
+    let dbConnector = new DbConnector();
+    let userFunction = new UserFunctions();
+    let connector: mysql.IConnection;
+
+    dbConnector.connectToDb((error, connection) => {
+        if(error) {
+            return response.json({
+                err: error
+            })
+        }
+        else {
+            let reqVerificationCode = request.body.verification_code;
+            let userId = request.body.user_id;
+            
+            userFunction.getUserVerificationCode(userId, connection, (data) => {
+                if(reqVerificationCode == data[0].verification_code) {
+                    userFunction.verifyUserEmail(userId, connection, (res) =>{
+
+                        if(res.affectedRows == 1) {
+                            return response.json({status: true});
+                        }
+                        else {
+                            return response.json({status: false});
+                        }
+                    });
+                }
+                else {
+                    return response.json({status: false});
+                }
+            });
+        }
+    });
+})
+
 export { users }
