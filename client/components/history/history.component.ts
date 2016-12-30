@@ -42,8 +42,6 @@ export class HistoryComponent implements OnInit {
             this.history = data.data;
             let i=0
             for(let row of this.history) {
-                console.log(row.total_questions);
-                //console.log(row.)
                 this.history[i].percentage = ((parseInt(row.total_correct) / parseInt(row.total_questions))*100).toFixed(2);
                 i++;
             }
