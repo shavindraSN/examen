@@ -6,6 +6,8 @@ import { Question } from '../../models/question';
 import { Answer } from '../../models/answer';
 import { Error } from '../../models/error';
 import { User } from '../../models/user';
+import { Result } from '../../models/result';
+
 
 export class QuestionFunctions {
     /**
@@ -141,16 +143,16 @@ export class QuestionFunctions {
      * @param {variable} sheetName - name of the sheet which questions are on
      */
     uploadQuestionsExcel(fileName, sheetName) {
-     Excel({
-                input: fileName,  
-                output: null, 
-                sheet: sheetName  
+        Excel({
+            input: fileName,
+            output: null,
+            sheet: sheetName
         }, function (err, result) {
-                 if (err) {
-                     console.error(err);
-                } else {
+            if (err) {
+                console.error(err);
+            } else {
                 console.log(result);
-                 return result;
+                return result;
             }
         });
 
@@ -162,37 +164,59 @@ export class QuestionFunctions {
      * This function flatten the question object and create SQL query and execute created query,
      * get results and post those results to the request
      */
-    addQuestion(connection: mysql.IConnection, question: Question, user: User, callback) {
-        // Get the question ID and insert for answer table 
-        // LAST_INSERT_ID()
-        // Refer: http://stackoverflow.com/questions/5178697/mysql-insert-into-multiple-tables-database-normalization
-        let answer_query = `INSERT INTO answers(question_id, is_image, answer_no, answer, image_url) 
-                            VALUES`;
+    addQuestion(connection: mysql.IConnection, question: Question, user_id, callback) {
 
-        for(let answer of question.answers) {
-            answer_query += '(LAST_INSERT_ID()' + ',' + answer.answer_is_image + ',' + answer.answer_no + ',' + 
-                            answer.answer + ',' + answer.answer_image_url + '),'
-        }
-        let question_query = `INSERT INTO questions
-                    (correct_ans_no, question_time, paper_id, user_id, subject_id, is_image, image_url, question) 
-                    VALUES(` + question.correct_ans_no + `,`+ question.question_time + `,`+ question.paper_id + `,`+ 
-                     user.id + `,` + question.subject_id + `,`+ question.is_image + `,` + question.image_url +`,` + 
-                     question.question +`);`;
+        let question_query = "INSERT INTO questions(correct_ans_no, question_time, paper_id, user_id, subject_id, is_image, image_url, question) " +
+            "VALUES(" + question.correct_ans_no + ", " + question.question_time + ", " + question.paper_id + "," +
+            user_id + ", " + question.subject_id + ", " + question.is_image + ", " + question.image_url + ", " +
+            "\'" + question.question + "\'" + ");";
 
-        let transaction = 'BEGIN; ' + question_query +  ' ' + answer_query + 'COMMIT;';
+        connection.beginTransaction((err) => {
+            if (err) { throw err; }
+            connection.query(question_query, (error, res) => {
+                if (err) {
+                    return connection.rollback(() => {
+                        console.log('Rollback query');
+                        throw err;
+                    });
+                }
 
-        connection.query(transaction, (err, result) => {
-            callback(result);
-        });
+                let answer_query = "INSERT INTO answers(question_id, is_image, answer_no, answer, image_url) VALUES";
+
+                for (let answer of question.answers) {
+                    answer_query += "(" + res.insertId + ", " + answer.answer_is_image + ", " + answer.answer_no + ", " +
+                        "\'" + answer.answer + "\'" + ',' + answer.answer_image_url + "),"
+                }
+                answer_query += 'eof';
+                answer_query = answer_query.replace(',eof', '')
+
+                connection.query(answer_query, (err, res) => {
+                    if (err) {
+                        return connection.rollback(function () {
+                            throw err;
+                        });
+                    }
+
+                    connection.commit((err) => {
+                        if (err) {
+                            return connection.rollback(() => {
+                                throw err;
+                            });
+                        }
+                        callback(res);
+                    });
+                })
+            })
+        })
     }
 
     validateQuestionObject(question: Question): Error {
         let error = new Error();
-        if(!question.correct_ans_no || question.correct_ans_no) {
+        if (!question.correct_ans_no || question.correct_ans_no) {
             error.err_no = 1601;
             error.err_msg = 'No correct answer number provided. Make sure to give correct answer number.';
         }
-        else if(question.correct_ans_no < 1 || question.correct_ans_no > question.answers.length) {
+        else if (question.correct_ans_no < 1 || question.correct_ans_no > question.answers.length) {
             error.err_no = 1602;
             error.err_msg = 'Answer number correct. Answer number should not less than 1, more than max number';
         }
@@ -201,5 +225,13 @@ export class QuestionFunctions {
          */
 
         return error;
+    }
+
+    saveHistory(result: Result, connection: mysql.IConnection, callback) {
+        let query = `INSERT INTO History(user_id, subject_id, total_questions, total_correct) 
+                     VALUES(?, ?, ?, ?)`;
+        connection.query(query, [result.user_id, result.subject_id, result.total_questions, result.total_correct], (error, res) => {
+            callback(res)
+        });
     }
 }

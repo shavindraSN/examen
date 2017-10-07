@@ -35,7 +35,7 @@
 					<div class="btn-group">
 						<a class="btn btn-raised" *ngFor="let question of questions" (click)=onSelect(question)>{{ question.qno }}</a>
 					</div>
-					<a class="btn btn-info">Submit Answers</a>
+					<a (click)=submitAnswers() class="btn btn-info">Submit Answers</a>
 				</div>
 			</div>
 		</div>

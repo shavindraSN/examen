@@ -14,6 +14,10 @@ import { PaperSummaryComponent } from '../paperSummary/paper-summary.component';
 import { PaperComponent } from '../paper/paper.component';
 import { AddQuestionsComponent } from '../uploadQuestions/addQuestions/add-questions.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { ResultsComponent } from '../results/results.component';
+import { HistoryComponent } from '../history/history.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { AddQuestionModule } from '../addedQuestions/added-questions.module';
 
 @NgModule({
     imports: [
@@ -23,7 +27,9 @@ import { ProfileComponent } from '../profile/profile.component';
         NavBarModule,
         GraphModule,
         ModelPaperModule,
-        TimeModeModule
+        TimeModeModule,
+        SimpleNotificationsModule,
+        AddQuestionModule
     ],
     declarations: [
         HomeComponent,
@@ -32,7 +38,9 @@ import { ProfileComponent } from '../profile/profile.component';
         PaperSummaryComponent,
         PaperComponent,
         ProfileComponent,
-        AddQuestionsComponent
+        AddQuestionsComponent,
+        ResultsComponent,
+        HistoryComponent
     ],
     bootstrap: [
         HomeComponent

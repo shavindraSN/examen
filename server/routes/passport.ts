@@ -32,9 +32,10 @@ passport.serializeUser((user: User, done) => {
     console.log('Serializing user ', user.id);
     done(null, {
         id: user.id,
-        fisrtName: user.first_name,
+        firstName: user.first_name,
         lastName: user.last_name,
         email: user.email,
+        email_verified: user.email_verified,
         district: user.district,
         userType: user.type,
         token: sign({id: user.id} , secret, {expiresIn: "7d"})

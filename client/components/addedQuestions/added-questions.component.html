@@ -1,0 +1,26 @@
+<div class="container"><h1>Uploaded Questions Details</h1></div>
+<br>
+<div class="container">
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Question</th>
+                <th>Answer No</th>
+                <th>Answer</th>
+                <th>Question Time</th>
+                <th>Correct Answer No</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of questions">
+                <td>{{ row.subject_name }}</td>
+                <td>{{ row.question }}</td>
+                <td>{{ row.answer_no }}</td>
+                <td>{{ row.answer }}</td>
+                <td>{{ row.question_time }}</td>
+                <td>{{ row.correct_ans_no }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
